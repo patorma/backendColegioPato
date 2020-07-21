@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -43,7 +44,7 @@ public class Colegio implements Serializable{
 	private String nombre;
 	
 	@NotEmpty
-	@Size(max = 255)
+	@Size(min = 8,max = 255)
 	@Column(nullable=false)
 	private String direccion;
 
@@ -55,6 +56,7 @@ public class Colegio implements Serializable{
 		fechaCreacion= LocalDate.now();
 	}
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "colegio",cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})
 	private List<Profesor> profesores;

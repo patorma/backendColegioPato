@@ -1,6 +1,7 @@
 package com.patricocontreras.backendColegioPato.models.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,10 +44,13 @@ public class Profesor implements Serializable {
 	@Column(nullable=false)
 	private String nombre;
 	
+	@NotEmpty
+	private boolean activo;
+	
 	@NotNull(message = "no puede estar vacio")
 	@Column(name = "fecha_nacimiento")
 	@Temporal(TemporalType.DATE)
-	private String fechaNacimiento;
+	private Date fechaNacimiento;
 	
 	@NotNull(message = "la asignatura no puede ser vacia")
 	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -59,6 +63,8 @@ public class Profesor implements Serializable {
 	@JoinColumn(name="colegio_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})
 	private Colegio colegio;
+	
+	
 
 	/**
 	 * 
