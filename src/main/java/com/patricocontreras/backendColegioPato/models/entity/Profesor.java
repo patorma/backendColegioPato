@@ -20,10 +20,12 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
@@ -40,12 +42,12 @@ public class Profesor implements Serializable {
 	private Long id;
 	
 	@NotEmpty
-	@Size(max = 50)
 	@Column(nullable=false)
 	private String nombre;
 	
-	@NotEmpty
-	private boolean activo;
+	
+	@Getter
+	private Boolean activo;
 	
 	@NotNull(message = "no puede estar vacio")
 	@Column(name = "fecha_nacimiento")
@@ -53,13 +55,13 @@ public class Profesor implements Serializable {
 	private Date fechaNacimiento;
 	
 	@NotNull(message = "la asignatura no puede ser vacia")
-	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "asignatura_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})
 	private Asignatura asignatura;
 	
 	@NotNull(message = "El colegio no puede ser vacia")
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="colegio_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})
 	private Colegio colegio;

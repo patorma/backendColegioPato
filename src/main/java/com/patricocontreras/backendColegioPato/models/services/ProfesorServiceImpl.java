@@ -8,55 +8,63 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.patricocontreras.backendColegioPato.models.dao.IColegioDao;
+import com.patricocontreras.backendColegioPato.models.dao.IProfesorDao;
+import com.patricocontreras.backendColegioPato.models.entity.Asignatura;
 import com.patricocontreras.backendColegioPato.models.entity.Colegio;
 import com.patricocontreras.backendColegioPato.models.entity.Profesor;
 
 @Service
-public class ColegioServiceImpl implements IColegioService {
+public class ProfesorServiceImpl implements IProfesorService {
 	
 	@Autowired
-	private IColegioDao colegioDao;
+	IProfesorDao profesorDao;
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Colegio> findAll() {
+	public List<Profesor> findAll() {
+		
+		return profesorDao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Page<Profesor> findAll(Pageable pageable) {
+		
+		return profesorDao.findAll(pageable);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Profesor findById(Long id) {
 	
-		return colegioDao.findAll();
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Page<Colegio> findAll(Pageable pageable) {
-		
-		return colegioDao.findAll(pageable);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Colegio findById(Long id) {
-		
-		return colegioDao.findById(id).orElse(null);
+		return profesorDao.findById(id).orElse(null);
 	}
 
 	@Override
 	@Transactional
-	public Colegio save(Colegio colegio) {
-		return colegioDao.save(colegio);
+	public Profesor save(Profesor profesor) {
+	
+		return profesorDao.save(profesor);
 	}
 
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		colegioDao.deleteById(id);
-
+		profesorDao.deleteById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Profesor> findAllProfesores() {
+	public List<Asignatura> findAllAsignaturas() {
 		
-		return colegioDao.findAllProfesores();
+		return profesorDao.findAllAsignaturas();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Colegio> findAllColegios() {
+	
+		return profesorDao.findAllColegios();
 	}
 
 }

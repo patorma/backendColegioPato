@@ -57,7 +57,7 @@ public class Colegio implements Serializable{
 	}
 	
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "colegio",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "colegio")
 	@JsonIgnoreProperties({"hibernateLazyInitializer","hadler"})
 	private List<Profesor> profesores;
 	/**

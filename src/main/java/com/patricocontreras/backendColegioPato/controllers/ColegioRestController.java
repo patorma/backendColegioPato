@@ -86,9 +86,6 @@ public class ColegioRestController {
 				if(result.hasErrors()) {
 					// se debe obtener los mensajes de errror de cada campo 
 					// y convertir estos en una lista de errores de tipo string
-					
-					// se debe convertir esta lista de fielderrors en String
-					
 					// se debe convertir esta lista de fielderrors en String
 					List<String> errors = result.getFieldErrors()
 							.stream()
@@ -145,7 +142,7 @@ public class ColegioRestController {
 			return new ResponseEntity<Map<String, Object>>(response,HttpStatus.NOT_FOUND);
 		}
 		try {
-			//modificamos los datos del colegio actual con los datos del cliente que te envien
+			//modificamos los datos del colegio actual con los datos del colegio que te envien
 			colegioActual.setNombre(colegio.getNombre());
 			colegioActual.setDireccion(colegio.getDireccion());
 			

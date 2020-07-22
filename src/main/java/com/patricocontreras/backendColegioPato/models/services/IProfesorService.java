@@ -23,5 +23,5 @@ public interface IProfesorService {
 
 	public List<Asignatura> findAllAsignaturas();
 	
-	public List<Colegio> findAllColegio();
+	public List<Colegio> findAllColegios();
 }

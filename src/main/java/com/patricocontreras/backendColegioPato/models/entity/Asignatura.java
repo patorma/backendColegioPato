@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -32,6 +33,9 @@ public class Asignatura implements Serializable {
 	@Size(max = 50)
 	@Column(nullable=false)
 	private String nombre;
+	
+	/*@OneToOne(mappedBy ="asignatura")
+	private Profesor profesor;¨*
 	
 	
 	/**
